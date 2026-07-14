@@ -52,8 +52,6 @@ Perto do fim da partida, com cobras grandes e vários itens/bombas ocupando espa
 O prompt de 2 segundos pra escolher buff/debuff depende de o input do jogador chegar ao host antes do timeout. Em conexões com latência alta, o jogador pode ver a janela de escolha mas o host já ter processado o timeout quando o clique chegar — gerando a sensação de "não registrou minha escolha".
 **Mitigação futura:** considerar folga extra no timeout do lado do host (ex: 2.3s no servidor vs 2s exibido no cliente).
 
-### 6. Migração futura para Steam/Epic
-Caso o projeto evolua para publicação paga, o transporte de rede (hoje IP manual) precisará ser trocado por Steam P2P (via FizzySteamworks) ou equivalente na Epic. A arquitetura atual já isola essa decisão em `MatchNetworkManager`, então a troca é viável — mas exige testes de regressão em toda a camada de rede, já que o comportamento de conexão muda de fundamento.
 
 ## Roadmap
 
