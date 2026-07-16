@@ -4,11 +4,11 @@ on:
   workflow_dispatch: # Permite rodar manualmente clicando no botão "Run workflow"
   push:
     branches:
-      - main # Monitora a branch correta
+      - main # Monitora a branch principal
     paths:
       - 'snake-duel-issues.csv'
 
-# Define as permissões necessárias para o token nativo do GitHub rodar a automação
+# Garante permissão de escrita para o token nativo criar as issues
 permissions:
   contents: write
   issues: write
@@ -23,6 +23,6 @@ jobs:
       - name: Importar Issues do CSV
         uses: jasonm23/action-issue-importer@v1
         with:
-          # Usando o token automático gerado pelo próprio GitHub Actions
+          # Usando o token automático e nativo do GitHub Actions (sem precisar configurar segredos)
           github-token: ${{ secrets.GITHUB_TOKEN }}
           csv-filepath: 'snake-duel-issues.csv'
