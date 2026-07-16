@@ -27,6 +27,7 @@ jobs:
           python3 << 'EOF'
           import csv
           import subprocess
+          import json
 
           with open('snake-duel-issues.csv', newline='', encoding='utf-8') as f:
               reader = csv.DictReader(f)
@@ -35,14 +36,39 @@ jobs:
                   title = row['Title']
                   body = row['Description']
 
+                  result = subprocess.run(
+                      [
+                          'gh',
+                          'issue',
+                          'list',
+                          '--search', f'"{title}" in:title',
+                          '--state', 'all',
+                          '--json', 'title'
+                      ],
+                      capture_output=True,
+                      text=True
+                  )
+
+                  try:
+                      existing = json.loads(result.stdout)
+                  except Exception:
+                      existing = []
+
+                  if any(issue['title'] == title for issue in existing):
+                      print(f'Issue já existe: {title}')
+                      continue
+
                   print(f'Criando issue: {title}')
 
-                  subprocess.run([
-                      'gh',
-                      'issue',
-                      'create',
-                      '--title', title,
-                      '--body', body
-                  ], check=True)
+                  subprocess.run(
+                      [
+                          'gh',
+                          'issue',
+                          'create',
+                          '--title', title,
+                          '--body', body
+                      ],
+                      check=True
+                  )
 
           EOF
