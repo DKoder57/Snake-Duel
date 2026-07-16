@@ -2,6 +2,7 @@
 
 Snake competitivo 1v1 (host-and-join direto por IP) com modo solo contra IA, inspirado em Slither.io e Tetris Battle. Protótipo desenvolvido como projeto de portfólio, com foco em arquitetura testável e multiplayer sem infraestrutura paga.
 
+
 ## Features
 
 - **Modo 1 (Tempo Limite)** — dois tabuleiros lado a lado, 2 minutos, vence quem tiver mais pontos. Wraparound nas paredes, itens (comida, maçã bufada, orbe de habilidade, bomba), buff/debuff temporário.
@@ -25,6 +26,17 @@ O projeto separa lógica de jogo (`Core`) de sincronização de rede (`Network`)
 ## Publicação
 
 Build de download (Windows/Mac/Linux) via itch.io. **Não há versão WebGL** — o modelo host-and-join exige abrir uma porta de rede, algo que navegadores não permitem por sandboxing/segurança, e mixed content bloquearia conexão não-criptografada a partir de uma página HTTPS.
+
+## 💻 Tech Stack
+
+| Camada | Tecnologia / Ferramenta | Descrição / Uso |
+| :--- | :--- | :--- |
+| **Engine Principal** | **Unity (C#)** | Desenvolvimento do ciclo de vida do jogo, renderização e gerenciamento de estados. |
+| **Rede & Multiplayer** | **Mirror Networking** | Framework de alto nível para gerenciamento de pacotes, sincronização de estados e arquitetura Host/Client baseada em IP. |
+| **Algoritmos & IA** | **$A^*$ Pathfinding (Customizado)** | Algoritmo genérico de busca de menor caminho para navegação e tomadas de decisão da Inteligência Artificial. |
+| **Arquitetura de Software**| **POCO (Plain Old C# Objects)** | Lógica de jogo limpa e desacoplada da Unity (`MonoBehaviour`) para o *BoardEngine*. |
+| **Qualidade & Testes** | **Unity Test Framework (NUnit)** | Execução de testes unitários automatizados para validação de regras de física lógica, pontuação e detecção de colisões. |
+| **Automação & CI/CD** | **GitHub Actions** | Integração contínua para gerenciamento de fluxo de trabalho e automações do repositório. |
 
 ---
 
