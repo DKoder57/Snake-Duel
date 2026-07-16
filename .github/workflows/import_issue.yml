@@ -20,15 +20,29 @@ jobs:
       - name: Baixar código do repositório
         uses: actions/checkout@v4
 
-      - name: Importar Issues do CSV
+      - name: Importar Issues
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          tail -n +2 snake-duel-issues.csv | while IFS=',' read -r title body
-          do
-            echo "Criando issue: $title"
+          python3 << 'EOF'
+          import csv
+          import subprocess
 
-            gh issue create \
-              --title "$title" \
-              --body "$body"
-          done
+          with open('snake-duel-issues.csv', newline='', encoding='utf-8') as f:
+              reader = csv.DictReader(f)
+
+              for row in reader:
+                  title = row['Title']
+                  body = row['Description']
+
+                  print(f'Criando issue: {title}')
+
+                  subprocess.run([
+                      'gh',
+                      'issue',
+                      'create',
+                      '--title', title,
+                      '--body', body
+                  ], check=True)
+
+          EOF
