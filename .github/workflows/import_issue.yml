@@ -6,9 +6,9 @@ on:
     branches:
       - main # Monitora a branch principal
     paths:
-      - 'snake-duel-issues.csv'
+      - 'snake-duel-issues.csv' # Dispara se o arquivo CSV for alterado
 
-# Garante permissão de escrita para o token nativo criar as issues
+# Garante permissão de escrita para o token nativo criar as issues no repositório
 permissions:
   contents: write
   issues: write
@@ -23,6 +23,8 @@ jobs:
       - name: Importar Issues do CSV
         uses: jasonm23/action-issue-importer@v1
         with:
-          # Usando o token automático e nativo do GitHub Actions (sem precisar configurar segredos)
+          # Usando o token automático do GitHub Actions (sem segredos manuais)
           github-token: ${{ secrets.GITHUB_TOKEN }}
           csv-filepath: 'snake-duel-issues.csv'
+          # Mapeia as colunas exatas do seu CSV para os campos das Issues
+          column-mappings: 'title=Title,body=Status'
