@@ -1,41 +1,46 @@
-Title,Status
-[setup] Instalar Unity Hub + Editor,Fase 0
-[setup] Completar tutorial básico do Unity,Fase 0
-[setup] Instalar Mirror via Package Manager,Fase 0
-[setup] Rodar exemplo pronto do Mirror,Fase 0
-[setup] Configurar Git no projeto,Fase 0
-[setup] Corrigir LICENSE do repositório,Fase 0
-[core] Implementar GridPosition com wraparound,Fase 1
-[core] Implementar SnakeState,Fase 1
-[core] Implementar BoardEngine,Fase 1
-[tests] Testes unitários do BoardEngine,Fase 1
-[core] Implementar ItemSpawner,Fase 1
-[core] Implementar ScoreCalculator,Fase 1
-[core] Implementar BombSystem,Fase 1
-[tests] Testes unitários do BombSystem,Fase 1
-[core] Implementar AStarPathfinder genérico,Fase 1
-[tests] Testes unitários do AStarPathfinder,Fase 1
-[core] Implementar SnakeAI,Fase 1
-[core] Heurísticas de decisão da IA,Fase 1
-[milestone] Jogo local completo (1 jogador + IA) sem rede,Fase 1
-[network] Configurar MatchNetworkManager,Fase 2
-[network] Implementar PlayerNetwork,Fase 2
-[network] Sincronizar estado da cobra (BoardNetworkSync),Fase 2
-[network] Sincronizar itens (ItemNetworkSync),Fase 2
-[network] Sincronizar buff/debuff aplicado,Fase 2
-[network] Testar host + join em rede local,Fase 2
-[network] Testar host + join fora da rede local,Fase 2
-[ui] HUDController,Fase 3
-[ui] SkillOrbPromptUI,Fase 3
-[ui] EndScreenUI,Fase 3
-[ui] Menu Modo Solo vs Multiplayer,Fase 3
-[art] Sprites da cobra e itens,Fase 3
-[docs] Atualizar README com instruções finais de build/execução,Fase 3
-[release] Preparar build para itch.io,Fase 3
-[mobile] Implementar MobileInputController,Fase 4
-[mobile] Adaptar HUD para tela única (portrait),Fase 4
-[mobile] Integrar AdMob — App Open Ad,Fase 4
-[mobile] Implementar UMP SDK (consentimento GDPR),Fase 4
-[mobile] Política de Privacidade + Data Safety Form,Fase 4
-[mobile] Criar conta de desenvolvedor Google Play,Fase 4
-[mobile] Build e submissão para Play Store,Fase 4
+Title,Description
+"[F0][Setup] Instalar Unity Hub e Unity Editor LTS","Instalar a versão LTS mais recente do Unity via Unity Hub. Confirmar que o editor abre corretamente e que é possível criar um projeto 2D vazio sem erros."
+"[F0][Setup] Completar tutorial introdutório do Unity","Realizar o tutorial oficial introdutório do Unity para compreender GameObjects, Components, Scenes e fluxo básico de desenvolvimento."
+"[F0][Setup] Instalar Mirror via Package Manager","Adicionar o pacote Mirror utilizando a URL oficial através do Package Manager."
+"[F0][Setup] Validar projeto de exemplo do Mirror","Executar um projeto de exemplo do Mirror e validar funcionamento de Host e Client antes da implementação própria."
+"[F0][Setup] Configurar Git e versionamento do projeto","Inicializar repositório Git, aplicar .gitignore para Unity e configurar Visible Meta Files e Force Text."
+"[F0][Setup] Atualizar licença do repositório","Substituir o conteúdo atual da LICENSE pela licença All Rights Reserved definida na documentação."
+
+"[F1][Core] Implementar GridPosition com suporte a wraparound","Criar estrutura de coordenadas x/y com aritmética modular para navegação contínua em grid 24x24."
+"[F1][Core] Implementar SnakeState","Representar segmentos da cobra, direção atual, pontuação e estado de vida."
+"[F1][Core] Implementar BoardEngine","Centralizar lógica de movimento por tick, colisões e interação com itens."
+"[F1][Test] Validar comportamento do BoardEngine","Cobrir movimento, colisão com corpo próprio e wraparound em todas as bordas."
+"[F1][Core] Implementar ItemSpawner","Gerenciar spawn contínuo de comida comum e respawn temporizado da maçã bufada."
+"[F1][Core] Implementar ScoreCalculator","Centralizar regras e multiplicadores de pontuação."
+"[F1][Core] Implementar BombSystem","Implementar fuse, explosão, área de efeito, dano em cabeça e penalidades."
+"[F1][Test] Validar comportamento do BombSystem","Validar temporização, área de explosão e funcionamento em regiões com wraparound."
+"[F1][Core] Implementar AStarPathfinder","Criar algoritmo A* reutilizável compatível com GridPosition e wraparound."
+"[F1][Test] Validar comportamento do AStarPathfinder","Cobrir caminho direto, obstáculos, wraparound e ausência de solução."
+"[F1][AI] Implementar SnakeAI","Implementar seleção de alvo, integração com BoardEngine e prevenção de colisão com bombas armadas."
+"[F1][AI] Implementar heurísticas de decisão","Definir critérios para uso de buff, debuff e lançamento de bombas."
+"[F1][Validation] Validar gameplay local completo","Confirmar funcionamento integral de uma partida local contra IA antes da integração de rede."
+
+"[F2][Network] Implementar MatchNetworkManager","Configurar NetworkManager, Offline Scene, Online Scene e HUD de conexão."
+"[F2][Network] Implementar PlayerNetwork","Capturar input local, enviar comandos ao servidor e aplicar lógica server-authoritative."
+"[F2][Network] Implementar sincronização da cobra","Replicar segmentos e estado da cobra para todos os clientes."
+"[F2][Network] Implementar sincronização de itens","Replicar spawn, coleta e remoção de itens em rede."
+"[F2][Network] Implementar sincronização de bombas","Sincronizar lançamento, temporizador e explosão de bombas."
+"[F2][Network] Implementar sincronização de buff e debuff","Garantir aplicação consistente dos efeitos entre clientes."
+"[F2][Validation] Validar multiplayer em rede local","Executar partidas completas entre dois jogadores na mesma rede."
+"[F2][Validation] Validar multiplayer em rede externa","Executar partidas completas entre jogadores fora da rede local utilizando port forwarding."
+
+"[F3][UI] Implementar HUDController","Exibir placar, cronômetro e item atualmente carregado."
+"[F3][UI] Implementar SkillOrbPromptUI","Permitir escolha de buff ou debuff com limite de tempo."
+"[F3][UI] Implementar EndScreenUI","Exibir vitória, derrota ou empate com sudden death."
+"[F3][UI] Implementar menu principal","Disponibilizar seleção entre modo Solo e Multiplayer."
+"[F3][Art] Substituir placeholders por sprites finais","Integrar arte definitiva das cobras e itens."
+"[F3][Docs] Atualizar documentação do projeto","Documentar build, execução e requisitos finais."
+"[F3][Release] Preparar release para itch.io","Gerar builds desktop e configurar página oficial do projeto."
+
+"[F4][Mobile] Implementar MobileInputController","Converter gestos touch em comandos de direção compatíveis com o Core."
+"[F4][Mobile] Adaptar interface para modo portrait","Reorganizar HUD e tabuleiro para experiência mobile."
+"[F4][Mobile] Integrar AdMob App Open Ad","Exibir anúncio de abertura conforme estratégia de monetização."
+"[F4][Mobile] Integrar UMP SDK","Implementar fluxo de consentimento GDPR."
+"[F4][Mobile] Preparar política de privacidade e Data Safety","Documentar coleta e uso de dados para publicação."
+"[F4][Mobile] Configurar conta Google Play","Preparar publicação e requisitos de teste fechado."
+"[F4][Mobile] Publicar versão Solo na Play Store","Gerar build Android e concluir processo de submissão."
