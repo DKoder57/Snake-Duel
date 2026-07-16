@@ -1,30 +1,34 @@
 name: Importador Automático de Issues
 
 on:
-  workflow_dispatch: # Permite rodar manualmente clicando no botão "Run workflow"
+  workflow_dispatch:
   push:
     branches:
-      - main # Monitora a branch principal
+      - main
     paths:
-      - 'snake-duel-issues.csv' # Dispara se o arquivo CSV for alterado
+      - 'snake-duel-issues.csv'
 
-# Garante permissão de escrita para o token nativo criar as issues no repositório
 permissions:
-  contents: write
+  contents: read
   issues: write
 
 jobs:
-  import-csv:
+  import-issues:
     runs-on: ubuntu-latest
+
     steps:
       - name: Baixar código do repositório
         uses: actions/checkout@v4
 
       - name: Importar Issues do CSV
-        uses: jasonm23/action-issue-importer@v1
-        with:
-          # Usando o token automático do GitHub Actions (sem segredos manuais)
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          csv-filepath: 'snake-duel-issues.csv'
-          # Mapeia as colunas exatas do seu CSV para os campos das Issues
-          column-mappings: 'title=Title,body=Status'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tail -n +2 snake-duel-issues.csv | while IFS=',' read -r title body
+          do
+            echo "Criando issue: $title"
+
+            gh issue create \
+              --title "$title" \
+              --body "$body"
+          done
