@@ -2,11 +2,6 @@ name: Importador Automático de Issues
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - 'snake-duel-issues.csv'
 
 permissions:
   contents: read
@@ -29,12 +24,26 @@ jobs:
           import subprocess
           import json
 
-          with open('snake-duel-issues.csv', newline='', encoding='utf-8') as f:
+          # Arquivo esperado:
+          # issues.csv
+          #
+          # Exemplo:
+          # Title,Description
+          # "[F1][Core] Implementar GridPosition","Criar sistema de coordenadas."
+          # "[F1][Core] Implementar SnakeState","Representar estado da cobra."
+          #
+          # Colunas obrigatórias:
+          # - Title
+          # - Description
+
+          CSV_FILE = "issues.csv"
+
+          with open(CSV_FILE, newline='', encoding='utf-8') as f:
               reader = csv.DictReader(f)
 
               for row in reader:
-                  title = row['Title']
-                  body = row['Description']
+                  title = row['Title'].strip()
+                  body = row['Description'].strip()
 
                   result = subprocess.run(
                       [
