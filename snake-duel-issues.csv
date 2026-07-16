@@ -1,0 +1,41 @@
+Title,Status
+[setup] Instalar Unity Hub + Editor,Fase 0
+[setup] Completar tutorial básico do Unity,Fase 0
+[setup] Instalar Mirror via Package Manager,Fase 0
+[setup] Rodar exemplo pronto do Mirror,Fase 0
+[setup] Configurar Git no projeto,Fase 0
+[setup] Corrigir LICENSE do repositório,Fase 0
+[core] Implementar GridPosition com wraparound,Fase 1
+[core] Implementar SnakeState,Fase 1
+[core] Implementar BoardEngine,Fase 1
+[tests] Testes unitários do BoardEngine,Fase 1
+[core] Implementar ItemSpawner,Fase 1
+[core] Implementar ScoreCalculator,Fase 1
+[core] Implementar BombSystem,Fase 1
+[tests] Testes unitários do BombSystem,Fase 1
+[core] Implementar AStarPathfinder genérico,Fase 1
+[tests] Testes unitários do AStarPathfinder,Fase 1
+[core] Implementar SnakeAI,Fase 1
+[core] Heurísticas de decisão da IA,Fase 1
+[milestone] Jogo local completo (1 jogador + IA) sem rede,Fase 1
+[network] Configurar MatchNetworkManager,Fase 2
+[network] Implementar PlayerNetwork,Fase 2
+[network] Sincronizar estado da cobra (BoardNetworkSync),Fase 2
+[network] Sincronizar itens (ItemNetworkSync),Fase 2
+[network] Sincronizar buff/debuff aplicado,Fase 2
+[network] Testar host + join em rede local,Fase 2
+[network] Testar host + join fora da rede local,Fase 2
+[ui] HUDController,Fase 3
+[ui] SkillOrbPromptUI,Fase 3
+[ui] EndScreenUI,Fase 3
+[ui] Menu Modo Solo vs Multiplayer,Fase 3
+[art] Sprites da cobra e itens,Fase 3
+[docs] Atualizar README com instruções finais de build/execução,Fase 3
+[release] Preparar build para itch.io,Fase 3
+[mobile] Implementar MobileInputController,Fase 4
+[mobile] Adaptar HUD para tela única (portrait),Fase 4
+[mobile] Integrar AdMob — App Open Ad,Fase 4
+[mobile] Implementar UMP SDK (consentimento GDPR),Fase 4
+[mobile] Política de Privacidade + Data Safety Form,Fase 4
+[mobile] Criar conta de desenvolvedor Google Play,Fase 4
+[mobile] Build e submissão para Play Store,Fase 4
