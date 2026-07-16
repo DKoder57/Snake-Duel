@@ -1,10 +1,17 @@
 name: Importador Automático de Issues
 
 on:
-  workflow_dispatch: # Permite que você clique em um botão para rodar quando quiser
+  workflow_dispatch: # Permite rodar manualmente clicando no botão "Run workflow"
   push:
     branches:
-      - import-tests # Roda sozinho se você atualizar o CSV nesta branch
+      - main # Monitora a branch correta
+    paths:
+      - 'snake-duel-issues.csv'
+
+# Define as permissões necessárias para o token nativo do GitHub rodar a automação
+permissions:
+  contents: write
+  issues: write
 
 jobs:
   import-csv:
@@ -14,9 +21,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Importar Issues do CSV
-        uses: ginfuru/action-issue-importer@v1.2.0
+        uses: jasonm23/action-issue-importer@v1
         with:
-          github-token: ${{ secrets.SANDBOX_TOKEN }}
+          # Usando o token automático gerado pelo próprio GitHub Actions
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           csv-filepath: 'snake-duel-issues.csv'
-          # Mapeia as colunas do seu CSV para os campos que o GitHub entende
-          column-mappings: 'title=Title,body=Status'
